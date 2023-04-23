@@ -2,8 +2,6 @@ package com.example.todolist.entity;
 
 import java.sql.Date;
 
-import org.springframework.boot.autoconfigure.web.WebProperties.Resources.Chain.Strategy;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +20,7 @@ public class Todo {
     private Integer id;
 
     @Column(name = "title")
-    private String value;
+    private String title;
 
     @Column(name = "importance")
 	private Integer importance;
