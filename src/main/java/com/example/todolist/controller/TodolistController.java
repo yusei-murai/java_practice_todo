@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.todolist.repository.Todorepository;
+import com.example.todolist.service.TodoService;
 import com.example.todolist.entity.Todo;
+import com.example.todolist.form.TodoData;
 
 import lombok.AllArgsConstructor;
 import java.util.List;
@@ -18,7 +20,8 @@ import java.util.List;
 @Controller
 @AllArgsConstructor
 public class TodolistController {
-    private final Todorepository todorepository;
+    private final Todorepository todoRepository;
+    private final TodoService todoService;
 
     @GetMapping("/todo")
     private ModelAndView showTodoList(ModelAndView mv){
@@ -42,7 +45,7 @@ public class TodolistController {
         boolean isValid = todoService.isValid(todoData, result);
         if(!result.hasErrors() && isValid){
             Todo todo = todoData.toEntity();
-            todorepository.saveAndFlush(todo);
+            todoRepository.saveAndFlush(todo);
 
             return showTodoList(mv);
         }else{
